@@ -45,7 +45,7 @@
 					)
 						.replace('$0', a[0].outerHTML) // red link
 						.replace('$1', $langName)
-						.replace('$2', $('<div>').append($("<a />",{href:"https:"+mediaWiki.config.get('wgServer')+"/wiki/"+$langCode+":"+$foreignSpan}).text($foreignSpan)).html());
+						.replace('$2', $('<div>').append($("<a />",{href:"https:"+mediaWiki.config.get('wgServer').replace('zh', $langCode)+"/wiki/"+$foreignSpan}).text($foreignSpan)).html());
 
 					var tip = $('<div/>').addClass(tipclsname).hide();
 					tip.html(tipHtml);

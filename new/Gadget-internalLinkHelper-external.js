@@ -15,7 +15,7 @@
                 $langName = $(this).data(dataAlias.foreignLangLocalName),
                 $that = $( this ).data( 'internalLinkHelper-showing', false );
     
-                var newurl ="https:"+mediaWiki.config.get('wgServer')+"/wiki/"+$langCode+":"+$foreignSpan;
+                var newurl ="https:"+mediaWiki.config.get('wgServer').replace('zh', $langCode)+"/wiki/"+$foreignSpan;
         $('a', this).removeClass('new').addClass('extiw')
             .attr('href', newurl)
             .attr('title', $(this).data(dataAlias.foreignArticleTitle));

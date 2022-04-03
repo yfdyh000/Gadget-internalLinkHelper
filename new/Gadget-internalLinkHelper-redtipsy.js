@@ -70,7 +70,7 @@ mw.loader.using('jquery.tipsy', function(){
 						+ wgUVS( '”尚未创建，可参考', '」尚未創建，可參考' )
 						+ $langName
 						+ wgUVS( '维基百科的对应页面：', '維基百科的對應頁面：' )
-						+ $('<div>').append($("<a />",{href:"https:"+mediaWiki.config.get('wgServer')+"/wiki/"+$langCode+":"+$foreignSpan}).text($foreignSpan)).html()
+						+ $('<div>').append($("<a />",{href:"https:"+mediaWiki.config.get('wgServer').replace('zh', $langCode)+"/wiki/"+$foreignSpan}).text($foreignSpan)).html()
 						+ '。</div>';
 				}
 			} )
