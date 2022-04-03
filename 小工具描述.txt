@@ -1,0 +1,17 @@
+跨语言链接：只显示红链（本项及以下共8选项仅可选1个）  （查看说明 | 导出）
+使用：​Gadget-internalLinkHelper-redonly.css
+跨语言链接：在Tooltip中显示原文链接  （查看说明 | 导出）
+使用：​Gadget-internalLinkHelper-redtipsy.js、​Gadget-internalLinkHelper-redonly.css、​Gadget-internalLinkHelper-redtipsy.css
+跨语言链接：显示红链和未链接原文  （查看说明 | 导出）
+使用：​Gadget-internalLinkHelper-redplain.js、​Gadget-internalLinkHelper-redplain.css
+跨语言链接：直接指向原文  （查看说明 | 导出）
+使用：​Gadget-internalLinkHelper-external.js、​Gadget-internalLinkHelper-redonly.css、​Gadget-internalLinkHelper-external.css
+跨语言链接：指向原文和语言名后缀  （查看说明 | 导出）
+使用：​Gadget-internalLinkHelper-external.js、​Gadget-internalLinkHelper-suffix.js、​Gadget-internalLinkHelper-external.css、​Gadget-internalLinkHelper-suffix.css
+跨语言链接：鼠标点击时显示Tooltip  （查看说明 | 导出）
+使用：​Gadget-internalLinkHelper-cravix.js、​Gadget-internalLinkHelper-cravix.css
+跨语言链接：光标悬浮时显示Tooltip  （查看说明 | 导出）
+使用：​Gadget-internalLinkHelper-redtipsy.js、​Gadget-internalLinkHelper-redonly.css、​Gadget-internalLinkHelper-redtipsy.css、​Gadget-internalLinkHelper-altcolor.css
+默认所有人启用。
+跨语言链接：光标悬浮时显示Tooltip（对于已存在页面的情况下高亮表示）  （查看说明 | 导出）
+使用：​Gadget-internalLinkHelper-redtipsy.js、​Gadget-internalLinkHelper-redonly.css、​Gadget-internalLinkHelper-redtipsy.css、​Gadget-internalLinkHelper-altcolor.css、​Gadget-internalLinkHelper-ilbluehl.css

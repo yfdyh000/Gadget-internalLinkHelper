@@ -1,0 +1,7 @@
+.ilh-lang, .ilh-colon { 
+    display: none; /* avoid spacing flash */
+}
+
+.ilh-link a {
+    color: inherit !important; /* try to mimic plain text before js is ready */
+}

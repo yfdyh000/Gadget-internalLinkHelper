@@ -1,0 +1,20 @@
+.ilh-all a.new {
+    color: #007a5e;
+}
+
+.ilh-all a.new:hover {
+    color: #007a5e;
+}
+
+.ilh-all a.new:visited {
+    color: #428c7a;
+}
+
+.client-nojs .ilh-all a.new,
+.ilh-active .ilh-all a.new {
+    color: #BA0000;
+}
+
+.ilh-tool {
+    color: #007a5e;
+}

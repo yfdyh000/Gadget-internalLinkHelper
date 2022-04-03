@@ -1,0 +1,15 @@
+.ilh-comment { /* taken from [[Template:Languageicon]] */
+    font-family: sans-serif;
+    color: #54595d;
+    font-size: 0.8em;
+    bottom: 0.1em;
+    font-weight: bold;
+}
+
+.ilh-lang a {
+    color: inherit !important;
+}
+
+.ilh-colon, .ilh-link {
+    display: none;
+}
