@@ -1,14 +1,6 @@
 // <nowiki>
 
 (function($, mw) {
-	var dataAlias = { // rename and shared
-		foreignArticleTitle: "fa",
-		foreignCode: "fc",
-		foreignLangLocalName: "fn",
-		localArticleTitle: "la",
-		//displayName: "d"
-	};
-
 	mw.loader.getScript('https://zh.wikipedia.org/w/index.php?title=MediaWiki:Tooltips.js&action=raw&ctype=text/javascript').then(function() {
 		mw.hook('wikipage.content').add(function($content) {
 			var baseUrl = '//upload.wikimedia.org/wikipedia/commons/';
@@ -22,12 +14,7 @@
 			});
 			var createTips = function(clsname, tipclsname, attrs, isChild) {
 				$('span.ilh-all').each(function(_, item) {
-					var origTitle = $(this).text(),
-					$foreignSpan =$(this).data(dataAlias.foreignArticleTitle), // foreign title
-					$linkAnchor = $(this),
-					$langCode = $(this).data(dataAlias.foreignCode), // foreign code raw
-					$langName = $(this).data(dataAlias.foreignLangLocalName) || "其他语言",
-					$that = $( this ).data( 'internalLinkHelper-showing', false );	
+					var d=dataValues(this);
 
 					item = $(item);
 					if(item.hasClass('ilh-blue')) return;
@@ -44,8 +31,8 @@
 						'條目$0尚未創建，可參考$1維基百科的對應頁面$2。'
 					)
 						.replace('$0', a[0].outerHTML) // red link
-						.replace('$1', $langName)
-						.replace('$2', $('<div>').append($("<a />",{href:"https:"+mediaWiki.config.get('wgServer').replace('zh', $langCode)+"/wiki/"+$foreignSpan}).text($foreignSpan)).html());
+						.replace('$1', d.$langName)
+						.replace('$2', $('<div>').append($("<a />",{href:"https:"+mediaWiki.config.get('wgServer').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan}).text(d.$foreignSpan)).html());
 
 					var tip = $('<div/>').addClass(tipclsname).hide();
 					tip.html(tipHtml);

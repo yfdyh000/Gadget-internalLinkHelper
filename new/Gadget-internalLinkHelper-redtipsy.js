@@ -1,13 +1,5 @@
 mw.loader.using('jquery.tipsy', function(){
 ( function( $, mw, window ) { $( function() {
-	var dataAlias = {
-		foreignArticleTitle: "fa",
-		foreignCode: "fc",
-		foreignLangLocalName: "fn",
-		localArticleTitle: "la",
-		//displayName: "d"
-	};
-
 	mw.hook( 'wikipage.content' ).add( function( $content ) {
 		$( '.ilh-all', $content ).not( '.ilh-blue' ).on( 'internalLinkHelper-close', function( event ) {
 			var $this = $( this );
@@ -16,14 +8,8 @@ mw.loader.using('jquery.tipsy', function(){
 					.data( 'internalLinkHelper-showing', false );
 			}
 		} ).each( function() {
-			var origTitle = $(this).text(),
-				$foreignSpan =$(this).data(dataAlias.foreignArticleTitle), // foreign title
-				$linkAnchor = $(this),
-				$langCode = $(this).data(dataAlias.foreignCode), // foreign code raw
-				$langName = $(this).data(dataAlias.foreignLangLocalName),
-				$that = $( this ).data( 'internalLinkHelper-showing', false );
-
-			if ( !$linkAnchor.length ) {
+			var d=dataValues(this);
+			if ( !d.$linkAnchor.length ) {
 				return;
 			}
 
@@ -40,15 +26,15 @@ mw.loader.using('jquery.tipsy', function(){
 			
 			var mouseleave = function() {
 				autoSetTimeout( function() {
-					$that.trigger( 'internalLinkHelper-close' );
+					d.$that.trigger( 'internalLinkHelper-close' );
 				}, 500 );
 			}, mouseenter = function() {
-				if ( $that.data( 'internalLinkHelper-showing' ) ) {
+				if ( d.$that.data( 'internalLinkHelper-showing' ) ) {
 					maybeClearTimeout();
 				} else {
-					$( '.ilh-all', $content ).not( $that ).trigger( 'internalLinkHelper-close' );
-					$that.addClass( 'ilh-active' ).data( 'internalLinkHelper-showing', true );
-					var tipsy = $linkAnchor.tipsy( 'show' );
+					$( '.ilh-all', $content ).not( d.$that ).trigger( 'internalLinkHelper-close' );
+					d.$that.addClass( 'ilh-active' ).data( 'internalLinkHelper-showing', true );
+					var tipsy = d.$linkAnchor.tipsy( 'show' );
 					// please revise as necessary
 					if(tipsy) {
 						tipsy = tipsy.tipsy( true );
@@ -58,7 +44,7 @@ mw.loader.using('jquery.tipsy', function(){
 					}
 				}
 			};
-			$linkAnchor.tipsy( {
+			d.$linkAnchor.tipsy( {
 				className: 'ilh-tipsy',
 				gravity: 'nw',
 				html: true,
@@ -66,11 +52,11 @@ mw.loader.using('jquery.tipsy', function(){
 				title: function() {
 					return '<div>'
 						+ wgUVS( '条目“', '條目「' )
-						+ origTitle
+						+ d.$origTitle
 						+ wgUVS( '”尚未创建，可参考', '」尚未創建，可參考' )
-						+ $langName
+						+ d.$langName
 						+ wgUVS( '维基百科的对应页面：', '維基百科的對應頁面：' )
-						+ $('<div>').append($("<a />",{href:"https:"+mediaWiki.config.get('wgServer').replace('zh', $langCode)+"/wiki/"+$foreignSpan}).text($foreignSpan)).html()
+						+ $('<div>').append($("<a />",{href:"https:"+mediaWiki.config.get('wgServer').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan}).text(d.$foreignSpan)).html()
 						+ '。</div>';
 				}
 			} )
