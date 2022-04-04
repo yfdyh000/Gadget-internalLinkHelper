@@ -1,0 +1,3 @@
+<includeonly>{{#invoke:ilh|main |lang=文言 |lang-code=zh-classical |1={{{1|{{{2|}}}}}} |2={{{2|}}} |d={{{d|{{{3|}}}}}} |nocat={{{nocat|}}}}}</includeonly><noinclude>
+{{Documentation|Template:Internal link helper/doc}}
+</noinclude>

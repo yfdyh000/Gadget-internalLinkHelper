@@ -1,0 +1,9 @@
+<includeonly>{{{{{|safesubst:}}}#ifexist:Template:Internal_link_helper/{{{1}}}
+|{{link-{{{1}}}|{{{2}}}{{{{{|safesubst:}}}void|
+}}{{{{{|safesubst:}}}#if:{{{3|}}}|{{{{{|safesubst:}}}#ifeq:{{{2}}}|{{{3|}}}|{{{{{|safesubst:}}}!}}{{{3}}}}}}}{{{{{|safesubst:}}}void|
+}}{{{{{|safesubst:}}}#if:{{{d|{{{4|}}}}}}|{{{{{|safesubst:}}}#ifeq:{{{2}}}|{{{d|{{{4|}}}}}}|{{{{{|safesubst:}}}!}}{{{d|{{{4}}}}}}}}}}{{{{{|safesubst:}}}void|
+}}}}
+|{{Internal link helper|lang = {{{{{|safesubst:}}}#ifexist:Template:ISO 639 name {{{lang|{{{lang-code|}}}}}}
+|{{ISO 639 Name|{{{lang|{{{lang-code|}}}}}}}}
+|{{{lang|{{{lang-code|}}}}}}}}|lang-code = {{{lang-code|{{{lang|}}}}}}|1 = {{{1|}}}|2 = {{{2|}}}|d = {{{d|{{{3|}}}}}}}}
+}}</includeonly><noinclude>{{Documentation|Template:Internal link helper/doc}}</noinclude>
