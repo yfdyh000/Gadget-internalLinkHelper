@@ -2,9 +2,8 @@ mw.loader.using('jquery.tipsy', function(){
 ( function( $, mw, window ) { $( function() {
 	mw.hook( 'wikipage.content' ).add( function( $content ) {
 		$( '.ilh-all', $content ).not( '.ilh-blue' ).on( 'internalLinkHelper-close', function( event ) {
-			var $this = $( this );
-			if ( $this.data( 'internalLinkHelper-showing' ) ) {
-				$( this ).removeClass( 'ilh-active' ).find( '.ilh-all a' ).tipsy( 'hide' ).end()
+			if ( $(this).data( 'internalLinkHelper-showing' ) ) {
+				$(this).removeClass( 'ilh-active' ).tipsy( 'hide' ).end()
 					.data( 'internalLinkHelper-showing', false );
 			}
 		} ).each( function() {
