@@ -21,7 +21,7 @@
 					var chinese = item;
 					chinese.addClass(clsname);
 					var a = item.clone();
-					var title = a.attr('title') || a.attr(dataAlias.localArticleTitle);
+					var title = a.attr('title') || extractTitleFromURL(a.attr('href'));
 					if (title) {
 						title = title.replace((a.hasClass('new') ? / ?(（[^（）]+）|\([^\(\)]+\))$/ : ''), '');
 						a.text(title);

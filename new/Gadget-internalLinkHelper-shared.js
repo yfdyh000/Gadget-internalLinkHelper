@@ -1,18 +1,51 @@
-var dataAlias = {
-    foreignArticleTitle: "fa", // 外语条目名称
-    foreignCode: "fc", // 外部语言代码
-    foreignLangLocalName: "fn", // 外语在本地的名称 如"英语"
-    localArticleTitle: "la", // 本地条目名称
-    //displayName: "d" // 链接显示名称
+var extractTitleFromURL = function(url) {
+    try {
+        if(url.indexOf('/w/index.php') > -1) { // 例如预览中
+            url = url.replace(/.+\/index\.php\?title=([^&]+).+/, '$1').replace(/_/g, ' ');
+            url = decodeURIComponent(url); // 后置，避免条目名含&
+        } else {
+            url = url.replace(/.+\/wiki\/([^?]+)/, '$1').replace(/_/g, ' ');
+            url = decodeURIComponent(url);
+        }
+        return url;
+    } catch (error) {
+        return "iwHelper error";
+    }
 };
 
+var getUserVariant = function() {
+    var cur = mw.config.get("wgUserLanguage");
+    if (cur.indexOf("zh-") < 0) { // 'zh' or non-Chinese UI preference
+        cur = mw.config.get("wgUserVariant");
+    }
+    if (cur.indexOf("t")>0 || cur.indexOf("-hk")>0) {
+        return "zh-hant";
+    } else {
+        return "zh-hans";
+    }
+}
+var langCodeToLocalName = function(langCode, prefer) {
+    if(typeof langLocalNames[langCode] == 'undefined') return "";
+    var zhName = langLocalNames[langCode]["zh"];
+    if(typeof zhName != 'undefined'){
+        return zhName;
+    } else {
+        zhName = langLocalNames[langCode][prefer];
+        return zhName || "";
+    }
+}
+
 var dataValues = function(that) {
+    var locUrl = $(that).children('a:first-child').attr('href') || "";
+    var extUrl = $(that).find('a.extiw').attr('href') || "";
+    var langCode = extUrl.replace(/.+\:\/\/([^.]+)\.wiki.+/, '$1');
+    var langName = langCodeToLocalName(langCode, getUserVariant()) || langCode;
     return {
-        $origTitle: $(that).text(),
-        $foreignSpan: $(that).data(dataAlias.foreignArticleTitle), // foreign title
-        $linkAnchor: $(that),
-        $langCode: $(that).data(dataAlias.foreignCode), // foreign code raw
-        $langName: $(that).data(dataAlias.foreignLangLocalName) || "其他语言",
+        $origTitle: extractTitleFromURL(locUrl),
+        $foreignSpan: extractTitleFromURL(extUrl), // $foreignTitleFromUrl
+        $linkAnchor: $(that).children('a:first-child'),
+        $langCode: langCode, // foreign code
+        $langName: langName,
         $that: $(that).data( 'internalLinkHelper-showing', false )
     }
 };
