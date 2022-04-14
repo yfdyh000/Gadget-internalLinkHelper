@@ -1,8 +1,8 @@
-var extractTitleFromURL = function(url) {
+var extractTitleFromURL = function (url) {
     try {
-        if(url.indexOf('/w/index.php') > -1) { // 例如预览中
+        if (url.indexOf('/w/index.php') > -1) { // 例如预览中
             url = url.replace(/.+\/index\.php\?title=([^&]+).+/, '$1').replace(/_/g, ' ');
-            url = decodeURIComponent(url); // 后置，避免条目名含&
+            url = decodeURIComponent(url); // 先替换后转换，避免条目名含&
         } else {
             url = url.replace(/.+\/wiki\/([^?]+)/, '$1').replace(/_/g, ' ');
             url = decodeURIComponent(url);
@@ -13,21 +13,21 @@ var extractTitleFromURL = function(url) {
     }
 };
 
-var getUserVariant = function() {
+var getUserVariant = function () {
     var cur = mw.config.get("wgUserLanguage");
     if (cur.indexOf("zh-") < 0) { // 'zh' or non-Chinese UI preference
         cur = mw.config.get("wgUserVariant");
     }
-    if (cur.indexOf("t")>0 || cur.indexOf("-hk")>0) {
+    if (cur.indexOf("t") > 0 || cur.indexOf("-hk") > 0) {
         return "zh-hant";
     } else {
         return "zh-hans";
     }
 }
-var langCodeToLocalName = function(langCode, prefer) {
-    if(typeof langLocalNames[langCode] == 'undefined') return "";
+var langCodeToLocalName = function (langCode, prefer) {
+    if (typeof langLocalNames[langCode] == 'undefined') return "";
     var zhName = langLocalNames[langCode]["zh"];
-    if(typeof zhName != 'undefined'){
+    if (typeof zhName != 'undefined') {
         return zhName;
     } else {
         zhName = langLocalNames[langCode][prefer];
@@ -35,17 +35,16 @@ var langCodeToLocalName = function(langCode, prefer) {
     }
 }
 
-var dataValues = function(that) {
-    var locUrl = $(that).children('a:first-child').attr('href') || "";
-    var extUrl = $(that).find('a.extiw').attr('href') || "";
-    var langCode = extUrl.replace(/.+\:\/\/([^.]+)\.wiki.+/, '$1');
-    var langName = langCodeToLocalName(langCode, getUserVariant()) || langCode;
-    return {
-        $origTitle: extractTitleFromURL(locUrl),
-        $foreignSpan: extractTitleFromURL(extUrl), // $foreignTitleFromUrl
-        $linkAnchor: $(that).children('a:first-child'),
-        $langCode: langCode, // foreign code
-        $langName: langName,
-        $that: $(that).data( 'internalLinkHelper-showing', false )
-    }
+function dataValues(t) {
+    this.that = t
 };
+dataValues.prototype = {
+    get _locUrl() { return $(this.that).children('a:first-child').attr('href') || ""; },
+    get _extUrl() { return $(this.that).find('a.extiw').attr('href') || ""; },
+    get $origTitle() { return extractTitleFromURL(this._locUrl) },
+    get $foreignSpan() { return extractTitleFromURL(this._extUrl) },
+    get $linkAnchor() { return $(this.that).children('a:first-child') },
+    get $langCode() { return this._extUrl.replace(/.+\:\/\/([^.]+)\.wiki.+/, '$1') || ""; }, // foreign code
+    get $langName() { return langCodeToLocalName(this.langCode, getUserVariant()) || this.langCode; },
+    get $that() { return $(this.that).data('internalLinkHelper-showing', false) }
+}

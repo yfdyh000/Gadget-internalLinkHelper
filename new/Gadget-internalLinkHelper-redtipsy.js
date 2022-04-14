@@ -7,7 +7,7 @@ mw.loader.using('jquery.tipsy', function(){
 					.data( 'internalLinkHelper-showing', false );
 			}
 		} ).each( function() {
-			var d=dataValues(this);
+			var d=new dataValues(this);
 			if ( !d.$linkAnchor.length ) {
 				return;
 			}

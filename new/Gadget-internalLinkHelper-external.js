@@ -1,6 +1,6 @@
 (function ($, mw) { $(function() {
             $('.ilh-all', mw.util.$content).each(function() {
-                var d=dataValues(this);
+                var d=new dataValues(this);
 
                 var newurl ="https:"+mediaWiki.config.get('wgServer').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan;
         $('a', this).removeClass('new').addClass('extiw')

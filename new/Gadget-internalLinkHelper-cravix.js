@@ -3,7 +3,7 @@
 (function($, mw) {
 	mw.hook('wikipage.content').add(function($content) {
 				$('span.ilh-all').each(function(_, item) {
-					var d=dataValues(this);
+					var d=new dataValues(this);
 					item = $(item);
 					if(item.hasClass('ilh-blue')) return;
 					var a = item.clone();
