@@ -327,7 +327,7 @@ jssets_new = {
                     if ( !d.$linkAnchor.length ) {
                         return;
                     }
-                    $that = $( this ).data( 'internalLinkHelper-showing', false );
+                    var $that = $( this ).data( 'internalLinkHelper-showing', false );
         
                     var timeout = null;
                     
@@ -342,7 +342,7 @@ jssets_new = {
                     
                     var mouseleave = function() {
                         autoSetTimeout( function() {
-                            $that.trigger( 'internalLinkHelper-close' );
+                            $that.children('a:first-child').trigger( 'internalLinkHelper-close' );
                         }, 500 );
                     }, mouseenter = function() {
                         if ( $that.data( 'internalLinkHelper-showing' ) ) {
