@@ -56,6 +56,7 @@ var langLocalNames = {
     lt: { zh: "立陶宛语" },
     lv: { zh: "拉脫維亞語" },
     lzh: { zh: "文言文" },
+    min: { zh: "米南加保语" },
     mk: { "zh-hant": "馬其頓語", "zh-hans": "马其顿语" },
     ml: { zh: "马拉雅姆语" },
     mn: { zh: "蒙古語" },
