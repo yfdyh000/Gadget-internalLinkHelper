@@ -56,7 +56,7 @@ mw.loader.using('jquery.tipsy', function(){
 							+ wgUVS( '”尚未创建，可参考', '」尚未創建，可參考' )
 							+ d.$langName
 							+ wgUVS( '维基百科的对应页面：', '維基百科的對應頁面：' )
-							+ $("<a />",{href:"https:"+mediaWiki.config.get('wgServer').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan}).text(d.$foreignSpan)[0].outerHTML
+							+ $("<a />",{href:"https://"+mediaWiki.config.get('wgServerName').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan}).text(d.$foreignSpan)[0].outerHTML
 							+ '。</span>';
 					}
 				} )

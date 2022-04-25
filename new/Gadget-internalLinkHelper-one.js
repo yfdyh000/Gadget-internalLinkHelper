@@ -275,7 +275,7 @@ jssets_new = {
 						'<span>條目$0尚未創建，可參考$1維基百科的對應頁面$2。</span>')
 						.replace('$0', a[0].outerHTML) // red link
 						.replace('$1', d.$langName)
-						.replace('$2', ($("<a />",{href:"https:"+mediaWiki.config.get('wgServer').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan}).text(d.$foreignSpan))[0].outerHTML);
+						.replace('$2', ($("<a />",{href:"https://"+mediaWiki.config.get('wgServerName').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan}).text(d.$foreignSpan))[0].outerHTML);
 
 						var popup = new OO.ui.PopupWidget( { // todo: close button edge
 							$content: $(tipHtml),
@@ -299,7 +299,7 @@ jssets_new = {
             $('.ilh-all', mw.util.$content).each(function() {
                 var d=new dataValues(this);
 
-                var newurl ="https:"+mediaWiki.config.get('wgServer').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan;
+                var newurl ="https://"+mediaWiki.config.get('wgServerName').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan;
         $('a', this).removeClass('new').addClass('extiw')
             .attr('href', newurl)
             .attr('title', d.$foreignSpan);
@@ -372,7 +372,7 @@ jssets_new = {
                                 + wgUVS( '”尚未创建，可参考', '」尚未創建，可參考' )
                                 + d.$langName
                                 + wgUVS( '维基百科的对应页面：', '維基百科的對應頁面：' )
-                                + $("<a />",{href:"https:"+mediaWiki.config.get('wgServer').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan}).text(d.$foreignSpan)[0].outerHTML
+                                + $("<a />",{href:"https://"+mediaWiki.config.get('wgServerName').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan}).text(d.$foreignSpan)[0].outerHTML
                                 + '。</span>';
                         }
                     } )
