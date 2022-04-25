@@ -17,7 +17,7 @@
 						'<span>條目$0尚未創建，可參考$1維基百科的對應頁面$2。</span>')
 						.replace('$0', a[0].innerHTML) // red link
 						.replace('$1', d.$langName)
-						.replace('$2', ($("<a />",{href:"https:"+mediaWiki.config.get('wgServer').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan}).text(d.$foreignSpan)).html());
+						.replace('$2', ($("<a />",{href:"https:"+mediaWiki.config.get('wgServer').replace('zh', d.$langCode)+"/wiki/"+d.$foreignSpan}).text(d.$foreignSpan))[0].outerHTML);
 
 						var popup = new OO.ui.PopupWidget( {
 							$content: $(tipHtml),
